@@ -26,17 +26,23 @@ const Routine = () => {
   console.log("routines", routines);
 
   const allRoutines = () => {
-      return routines.map((r, i) => {
-        return <RoutineList key={i} day={r.day} />;
-      })
-  }
+    return routines.map((r, i) => {
+      return <RoutineList key={i} day={r.day} />;
+    });
+  };
 
-  let displayRoutinesList = routines ? allRoutines() : <h2>Hold your horses...  </h2>;
+  let displayRoutinesList = routines ? (
+    allRoutines()
+  ) : (
+    <h2>Hold your horses... </h2>
+  );
 
   return (
     <div>
       <p>Welcome to your Getfit-Guru routines.</p>
-      {displayRoutinesList}
+      <div className="divBody">
+        <div className="container">{displayRoutinesList}</div>
+      </div>
     </div>
   );
 };

@@ -2,8 +2,7 @@ import React from "react";
 
 function RoutineList(props) {
   return (
-    <div className="divBody">
-      <div className="container">
+
         <div className="card">
           <div className="face face1">
             <div className="content">
@@ -18,8 +17,7 @@ function RoutineList(props) {
             <h2>{props.day}</h2>
           </div>
         </div>
-      </div>
-    </div>
+
   );
 }
 

@@ -15,8 +15,11 @@ import Login from './components/Login';
 import Navbar from './components/Navbar';
 import Profile from './components/Profile';
 import Welcome from './pages/Welcome';
+import ExerciseForm from './pages/ExerciseForm';
+import ExerciseList from './pages/ExerciseList';
 import Exercise from './pages/Exercise';
 import Routine from './pages/Routine';
+
 
 const PrivateRoute = ({ component: Component, ...rest}) => {
   let token = localStorage.getItem('jwtToken');
@@ -67,8 +70,11 @@ function App() {
     <div className="App">
       <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />
       <div className="container mt-5">
+
+        <ExerciseForm />
         <Switch>
           <Route path='/signup' component={Signup} />
+          {/* <Route path='/exercises' component={ExerciseList} /> */}
           <Route 
             path="/login"
             render={(props) => <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser}/>}
@@ -76,6 +82,7 @@ function App() {
           <PrivateRoute path="/profile" component={Profile} user={currentUser} handleLogout={handleLogout} />
           <PrivateRoute path="/routines" component={Routine} />
           <Route exact path="/" component={Welcome} />
+          <PrivateRoute path="/exercises" component={Exercise} />
           <Route path="/about" component={About} />
         </Switch>
       </div>

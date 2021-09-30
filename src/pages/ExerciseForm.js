@@ -1,5 +1,5 @@
 // Imports
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
 
@@ -16,10 +16,20 @@ const ExerciseForm = () => {
   const [distanceGoal, setDistanceGoal] = useState('');
   const [redirect, setRedirect] = useState(false);
 
+  useEffect(() => {
+    if (type === 'Cardio') {
+      setMuscleGroup('Heart/Respiratory');
+    }
+  
+  }, [type])
+
   const handleType = (e) => {
       setType(e.target.value);
+      // if (type === 'Cardio'){
+      //   setMuscleGroup('Heart/Respiratory');
+      // }
   }
-
+  
   const handleMuscleGroup = (e) => {
       setMuscleGroup(e.target.value);
   }
@@ -78,7 +88,7 @@ if (redirect) return <Redirect to="/exercises" />; // You can have them redirect
                 <option value="Cardio">Cardio</option>
               </select>
               <label htmlFor="muscleGroup">Choose Muscle Group:</label>
-              <select name="muscleGroup" id="muscleGroup" onChange={handleMuscleGroup}>
+              <select name="muscleGroup" id="muscleGroup" onChange={handleMuscleGroup} value={muscleGroup}>
                 <option value="Chest">Chest</option>
                 <option value="Back">Back</option>
                 <option value="Arms">Arms</option>
@@ -88,7 +98,7 @@ if (redirect) return <Redirect to="/exercises" />; // You can have them redirect
                 <option value="Core">Core</option>
                 <option value="Heart/Respiratory">Heart/Respiratory</option>
               </select>
-              <label htmlFor="name">Name</label>
+              <label htmlFor="name">Name</label> 
               <input
                 type="text"
                 name="name"
@@ -96,19 +106,11 @@ if (redirect) return <Redirect to="/exercises" />; // You can have them redirect
                 onChange={handleName}
                 className="form-control"
               />
-            </div>
-            <div className="form-group">
-              <label htmlFor="durationGoal">Duration Goal</label>
-              <input
-                type="text"
-                name="durationGoal"
-                value={durationGoal}
-                onChange={handleDurationGoal}
-                className="form-control"
-                id="durationGoal"
-              />
-            </div>
-            <div className="form-group">
+            </div> 
+            {
+              type === 'Resistance' ? 
+              <>
+              <div className="form-group">
               <label htmlFor="weightGoal">Weight Goal</label>
               <input
                 type="text"
@@ -141,6 +143,20 @@ if (redirect) return <Redirect to="/exercises" />; // You can have them redirect
                 id='setsGoal'
               />
             </div>
+              </> 
+              : 
+              <>
+               <div className="form-group">
+              <label htmlFor="durationGoal">Duration Goal</label>
+              <input
+                type="text"
+                name="durationGoal"
+                value={durationGoal}
+                onChange={handleDurationGoal}
+                className="form-control"
+                id="durationGoal"
+              />
+            </div>
             <div className="form-group">
               <label htmlFor="distanceGoal">Distance Goal</label>
               <input
@@ -152,6 +168,10 @@ if (redirect) return <Redirect to="/exercises" />; // You can have them redirect
                 id='distanceGoal'
               />
             </div>
+              </>
+
+            } 
+           
             <button type="submit" className="btn btn-primary float-right">
               Submit
             </button>

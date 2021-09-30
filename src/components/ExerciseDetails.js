@@ -1,4 +1,5 @@
 import React from "react";
+import ProgressForm from "./ProgressForm";
 
 const ExerciseDetails = (props) => {
   console.log("details props", props);
@@ -15,6 +16,7 @@ const ExerciseDetails = (props) => {
           <p className="java">Sets: {props.setsGoal}</p>
           <p className="java">Distance: {props.distanceGoal}</p>
         </div>
+        <ProgressForm />
       </div>
       <div className="face face2">
         <h2>{props.muscleGroup}</h2>

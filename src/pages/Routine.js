@@ -41,7 +41,9 @@ const Routine = () => {
     <div>
       <p>Welcome to your Getfit-Guru routines.</p>
       <div className="divBody">
-        <div className="container">{displayRoutinesList}</div>
+      <div className="container">
+            {displayRoutinesList}
+      </div>
       </div>
     </div>
   );

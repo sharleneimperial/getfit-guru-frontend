@@ -1,4 +1,5 @@
 import React from "react";
+import RoutineDropDown from "../components/RoutineDropDown";
 
 function ExerciseList(props) {
   console.log('props of exercises', props);
@@ -7,7 +8,7 @@ function ExerciseList(props) {
           <div className="face face1">
             <div className="content">
               <span className="stars"></span>
-              <input type="button" value="Add to Routine" />
+              <RoutineDropDown exerciseId={props._id} />
               <h2 className="java">{props.name}</h2>
               <p className="java">Duration: {props.durationGoal}</p>
               <p className="java">Weight: {props.weightGoal}</p>
@@ -25,12 +26,4 @@ function ExerciseList(props) {
 
 export default ExerciseList;
 
-{/* <select name="routine" id="routine" >
-<option value="Monday">Monday</option>
-<option value="Tuesday">Tuesday</option>
-<option value="Wednesday">Wednesday</option>
-<option value="Thursday">Thursday</option>
-<option value="Friday">Friday</option>
-<option value="Saturday">Saturday</option>
-<option value="Sunday">Sunday</option>
-</select> */}
+

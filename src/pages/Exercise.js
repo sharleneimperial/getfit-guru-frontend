@@ -27,26 +27,35 @@ const Exercise = () => {
   console.log("exercises", exercises);
 
   const allExercises = () => {
-      return exercises.map((e, i) => {
-        return( <ExerciseList 
-        key={i} 
-        type={e.type} 
-        muscleGroup={e.muscleGroup} 
-        name={e.name} 
-        durationGoal={e.durationGoal}
-        weightGoal={e.weightGoal}
-        repsGoal={e.repsGoal}
-        setsGoal={e.setsGoal}
-        distanceGoal={e.distanceGoal}/>);
-      })
-  }
+    return exercises.map((e, i) => {
+      return (
+        <ExerciseList
+          key={i}
+          type={e.type}
+          muscleGroup={e.muscleGroup}
+          name={e.name}
+          durationGoal={e.durationGoal}
+          weightGoal={e.weightGoal}
+          repsGoal={e.repsGoal}
+          setsGoal={e.setsGoal}
+          distanceGoal={e.distanceGoal}
+        />
+      );
+    });
+  };
 
-  let displayExercisesList = exercises ? allExercises() : <h2>Hold your horses...  </h2>;
+  let displayExercisesList = exercises ? (
+    allExercises()
+  ) : (
+    <h2>Hold your horses... </h2>
+  );
 
   return (
     <div>
       <p>Welcome to your Getfit-Guru exercises.</p>
-      {displayExercisesList}
+      <div className="divBody">
+        <div className="container">{displayExercisesList}</div>
+      </div>
     </div>
   );
 };

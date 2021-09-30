@@ -6,6 +6,8 @@ html {
 }
 body {
   margin-bottom: 60px; /* Margin bottom by footer height */
+  background-color: #a9c9ff;
+  background-image: linear-gradient(180deg, #a9c9ff 0%, #ffbbec 100%);
 }
 .footer {
   position: absolute;
@@ -82,7 +84,7 @@ body {
 .divBody .container .card .face.face2 h2 {
 	 margin: 0;
 	 padding: 0;
-	 font-size: 10em;
+	 font-size: 3.5em;
 	 color: #fff;
 	 transition: 0.5s;
 	 text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -106,5 +108,20 @@ body {
 	 background-image: linear-gradient(40deg, #00fffc 0%, #fc00ff 45%, #fffc00 100%);
 	 border-radius: 15px;
 }
+.divBody .container .card:nth-child(4) .face.face2 {
+	 background-image: linear-gradient(40deg, #00fffc 0%, #fc00ff 45%, #fffc00 100%);
+	 border-radius: 15px;
+}
+.divBody .container .card:nth-child(5) .face.face2 {
+	 background-image: linear-gradient(40deg, #00fffc 0%, #fc00ff 45%, #fffc00 100%);
+	 border-radius: 15px;
+}
+.divBody .container .card:nth-child(6) .face.face2 {
+	 background-image: linear-gradient(40deg, #00fffc 0%, #fc00ff 45%, #fffc00 100%);
+	 border-radius: 15px;
+}
+.divBody .container .card:nth-child(7) .face.face2 {
+	 background-image: linear-gradient(40deg, #00fffc 0%, #fc00ff 45%, #fffc00 100%);
+	 border-radius: 15px;
+}
  
-

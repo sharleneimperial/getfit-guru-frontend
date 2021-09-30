@@ -70,8 +70,6 @@ function App() {
     <div className="App">
       <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />
       <div className="container mt-5">
-
-        <ExerciseForm />
         <Switch>
           <Route path='/signup' component={Signup} />
           {/* <Route path='/exercises' component={ExerciseList} /> */}
@@ -81,6 +79,7 @@ function App() {
           />
           <PrivateRoute path="/profile" component={Profile} user={currentUser} handleLogout={handleLogout} />
           <PrivateRoute path="/routines" component={Routine} />
+          <PrivateRoute path="/exercises/new" component={ExerciseForm} />
           <Route exact path="/" component={Welcome} />
           <PrivateRoute path="/exercises" component={Exercise} />
           <Route path="/about" component={About} />

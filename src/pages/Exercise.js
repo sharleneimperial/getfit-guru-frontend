@@ -31,6 +31,7 @@ const Exercise = () => {
       return (
         <ExerciseList
           key={i}
+          _id={e._id}
           type={e.type}
           muscleGroup={e.muscleGroup}
           name={e.name}

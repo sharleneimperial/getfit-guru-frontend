@@ -25,9 +25,6 @@ const ExerciseForm = () => {
 
   const handleType = (e) => {
       setType(e.target.value);
-      // if (type === 'Cardio'){
-      //   setMuscleGroup('Heart/Respiratory');
-      // }
   }
   
   const handleMuscleGroup = (e) => {
@@ -79,15 +76,18 @@ if (redirect) return <Redirect to="/exercises" />; // You can have them redirect
     <div className="row mt-4">
       <div className="col-md-7 offset-md-3">
         <div className="card card-body">
-          <h2 className="py-2">Signup</h2>
+          <h2 className="py-2">Add your exercise:</h2>
           <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label htmlFor="type">Choose exercise type:</label>
+              <label htmlFor="type">Exercise type: </label>
+              <br/>
               <select name="type" id="types" onChange={handleType}>
                 <option value="Resistance">Resistance</option>
                 <option value="Cardio">Cardio</option>
               </select>
-              <label htmlFor="muscleGroup">Choose Muscle Group:</label>
+              <br/>
+              <label htmlFor="muscleGroup">Target Muscle Group: </label>
+              <br/>
               <select name="muscleGroup" id="muscleGroup" onChange={handleMuscleGroup} value={muscleGroup}>
                 <option value="Chest">Chest</option>
                 <option value="Back">Back</option>
@@ -98,6 +98,7 @@ if (redirect) return <Redirect to="/exercises" />; // You can have them redirect
                 <option value="Core">Core</option>
                 <option value="Heart/Respiratory">Heart/Respiratory</option>
               </select>
+              <br/>
               <label htmlFor="name">Name</label> 
               <input
                 type="text"

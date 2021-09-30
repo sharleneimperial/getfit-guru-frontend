@@ -29,7 +29,7 @@ const Details = (props) => {
     return (
         <div>
         <p>Welcome to your Getfit-Guru exercises.</p>
-        <div className="divBody">
+        <div className="details">
           <div className="container">{displayExerciseItem}</div>
         </div>
       </div>

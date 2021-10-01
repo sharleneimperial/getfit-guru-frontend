@@ -70,6 +70,7 @@ const ExerciseForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault(); 
+    console.log("we hit the handlesubmit for the form");
 
       const newExercise = { type, muscleGroup, name, img_url, equipment, steps, durationGoal, weightGoal, repsGoal, setsGoal, distanceGoal };
       axios

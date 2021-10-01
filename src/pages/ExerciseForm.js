@@ -9,6 +9,9 @@ const ExerciseForm = () => {
   const [type, setType] = useState("Resistance");
   const [muscleGroup, setMuscleGroup] = useState("Chest");
   const [name, setName] = useState("");
+  const [img_url, setImg_Url] = useState("");
+  const [equipment, setEquipment] = useState("");
+  const [steps, setSteps] = useState("");
   const [durationGoal, setDurationGoal] = useState("");
   const [weightGoal, setWeightGoal] = useState('');
   const [repsGoal, setRepsGoal] = useState('');
@@ -35,6 +38,18 @@ const ExerciseForm = () => {
     setName(e.target.value);
   };
 
+  const handleImage = (e) => {
+    setImg_Url(e.target.value);
+  };
+
+  const handleEquipment = (e) => {
+    setEquipment(e.target.value);
+  };
+
+  const handleSteps = (e) => {
+    setSteps(e.target.value);
+  };
+
   const handleDurationGoal = (e) => {
     setDurationGoal(e.target.value);
   };
@@ -54,11 +69,9 @@ const ExerciseForm = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // at the beginning of a submit function
-    // make sure password and confirm password are equal
-    // password length >= 8 characters
+    e.preventDefault(); 
 
-      const newExercise = { type, muscleGroup, name, durationGoal, weightGoal, repsGoal, setsGoal, distanceGoal };
+      const newExercise = { type, muscleGroup, name, img_url, equipment, steps, durationGoal, weightGoal, repsGoal, setsGoal, distanceGoal };
       axios
         .post(`${REACT_APP_SERVER_URL}/exercises`, newExercise)
         .then((response) => {
@@ -106,6 +119,34 @@ if (redirect) return <Redirect to="/exercises" />; // You can have them redirect
                 value={name}
                 onChange={handleName}
                 className="form-control"
+                id="name"
+              />
+              <label htmlFor="img_url">Image URL</label> 
+              <input
+                type="text"
+                name="img_url"
+                value={img_url}
+                onChange={handleImage}
+                className="form-control"
+                id="img_url"
+              />
+              <label htmlFor="equipment">Equipment Needed</label> 
+              <input
+                type="text"
+                name="equipment"
+                value={equipment}
+                onChange={handleEquipment}
+                className="form-control"
+                id="equipment"
+              />
+              <label htmlFor="steps">Steps</label> 
+              <input
+                type="text"
+                name="steps"
+                value={steps}
+                onChange={handleSteps}
+                className="form-control"
+                id="steps"
               />
             </div> 
             {
@@ -170,9 +211,7 @@ if (redirect) return <Redirect to="/exercises" />; // You can have them redirect
               />
             </div>
               </>
-
             } 
-           
             <button type="submit" className="btn btn-primary float-right">
               Submit
             </button>

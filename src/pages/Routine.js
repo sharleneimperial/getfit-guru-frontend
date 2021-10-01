@@ -17,25 +17,21 @@ const Routine = () => {
   useEffect(() => {
     const fetchRoutines = async () => {
       const response = await Axios.get(`${REACT_APP_SERVER_URL}/routines`);
-      console.log("fetch routines", response.data.routines);
+      console.log("fetch routines", response.data);
       // const { results } = response.data.routines;
       setRoutines(response.data.routines);
     };
     fetchRoutines();
   }, []);
-  console.log("routines", routines);
+  // console.log("routines", routines);
 
   const allRoutines = () => {
     return routines.map((r, i) => {
-      return <RoutineList key={i} day={r.day} />;
+      return <RoutineList key={i} day={r.day} exercises={r.exercises} />;
     });
   };
 
-  let displayRoutinesList = routines ? (
-    allRoutines()
-  ) : (
-    <h2>Hold your horses... </h2>
-  );
+  let displayRoutinesList = routines ? (allRoutines()) : (<h2>Hold your horses... </h2>);
 
   return (
     <div>

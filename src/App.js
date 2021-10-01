@@ -16,9 +16,9 @@ import Navbar from './components/Navbar';
 import Profile from './components/Profile';
 import Welcome from './pages/Welcome';
 import ExerciseForm from './pages/ExerciseForm';
-import ExerciseList from './pages/ExerciseList';
 import Exercise from './pages/Exercise';
 import Routine from './pages/Routine';
+import Details from './pages/Details';
 
 
 const PrivateRoute = ({ component: Component, ...rest}) => {
@@ -72,13 +72,13 @@ function App() {
       <div className="container mt-5">
         <Switch>
           <Route path='/signup' component={Signup} />
-          {/* <Route path='/exercises' component={ExerciseList} /> */}
           <Route 
             path="/login"
             render={(props) => <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser}/>}
           />
           <PrivateRoute path="/profile" component={Profile} user={currentUser} handleLogout={handleLogout} />
           <PrivateRoute path="/routines" component={Routine} />
+          <PrivateRoute path="/details" component={Details} />
           <PrivateRoute path="/exercises/new" component={ExerciseForm} />
           <Route exact path="/" component={Welcome} />
           <PrivateRoute path="/exercises" component={Exercise} />

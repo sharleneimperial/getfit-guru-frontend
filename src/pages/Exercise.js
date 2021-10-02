@@ -35,6 +35,9 @@ const Exercise = () => {
           type={e.type}
           muscleGroup={e.muscleGroup}
           name={e.name}
+          img_url={e.img_url}
+          equipment={e.equipment}
+          steps={e.steps}
           durationGoal={e.durationGoal}
           weightGoal={e.weightGoal}
           repsGoal={e.repsGoal}

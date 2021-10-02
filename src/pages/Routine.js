@@ -7,9 +7,9 @@ import RoutineList from "./RoutineList";
 
 const { REACT_APP_SERVER_URL } = process.env;
 
-const Routine = () => {
+const Routine = (props) => {
   const [routines, setRoutines] = useState();
-  console.log("local storage", localStorage);
+  console.log("routine props", props);
   let token = localStorage.getItem("jwtToken");
 
   setAuthToken(token);
@@ -23,11 +23,11 @@ const Routine = () => {
     };
     fetchRoutines();
   }, []);
-  // console.log("routines", routines);
+  console.log("routines", routines);
 
   const allRoutines = () => {
     return routines.map((r, i) => {
-      return <RoutineList key={i} day={r.day} exercises={r.exercises} />;
+      return <RoutineList key={i} day={r.day} exercises={r.exercises} id={r._id} />;
     });
   };
 

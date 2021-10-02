@@ -19,7 +19,10 @@ p {
   height: 60px; /* Set the fixed height of the footer here */
   line-height: 60px; /* Vertically center the text there */
 }
-
+.trackerContainer {
+	display: flex;
+	flex-direction: column;
+}
 .divBody {
 	 margin: 0;
 	 padding: 0;
@@ -111,24 +114,29 @@ p {
 }
  
 .divBody .container .card:nth-child(4) .face.face2 {
-	 background-image: linear-gradient(40deg, #00fffc 0%, #fc00ff 45%, #fffc00 100%);
-	 border-radius: 15px;
+	background-image: linear-gradient(40deg, #fffc00 0%, #fc00ff 45%, #00fffc 100%);
+	border-radius: 15px;
 }
- 
 .divBody .container .card:nth-child(5) .face.face2 {
-	 background-image: linear-gradient(40deg, #00fffc 0%, #fc00ff 45%, #fffc00 100%);
-	 border-radius: 15px;
+	background-image: linear-gradient(40deg, #fc00ff 0%, #00fffc 45%, #fffc00 100%);
+	border-radius: 15px;
 }
- 
 .divBody .container .card:nth-child(6) .face.face2 {
-	 background-image: linear-gradient(40deg, #00fffc 0%, #fc00ff 45%, #fffc00 100%);
-	 border-radius: 15px;
+	background-image: linear-gradient(40deg, #00fffc 0%, #fc00ff 45%, #fffc00 100%);
+	border-radius: 15px;
 }
 .divBody .container .card:nth-child(7) .face.face2 {
-	 background-image: linear-gradient(40deg, #00fffc 0%, #fc00ff 45%, #fffc00 100%);
-	 border-radius: 15px;
+	background-image: linear-gradient(40deg, #fffc00 0%, #fc00ff 45%, #00fffc 100%);
+	border-radius: 15px;
 }
-
+.divBody .container .card:nth-child(8) .face.face2 {
+	background-image: linear-gradient(40deg, #fc00ff 0%, #00fffc 45%, #fffc00 100%);
+	border-radius: 15px;
+}
+.divBody .container .card:nth-child(9) .face.face2 {
+	background-image: linear-gradient(40deg, #00fffc 0%, #fc00ff 45%, #fffc00 100%);
+	border-radius: 15px;
+}
 
 .details {
 	 margin: 0;

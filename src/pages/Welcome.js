@@ -1,12 +1,11 @@
-import React from 'react';
+import React from "react";
+import "../Welcome.css";
 
 const Welcome = () => {
-    return (
-        <div>
-            <h1>Getfit</h1>
-            <p>Welcome to Getfit-Guru app.</p>
-        </div>
-    )
-}
-
+  return (
+    <div className="welcome">
+   
+    </div>
+  );
+};
 export default Welcome;

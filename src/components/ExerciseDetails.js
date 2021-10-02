@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-import ProgressForm from "./ProgressForm";
 import RepsTracker from "./trackers/RepsTracker";
 import SetsTracker from "./trackers/SetsTracker";
 import WeightTracker from "./trackers/WeightTracker";
@@ -11,6 +10,7 @@ import DurationTracker from "./trackers/DurationTracker";
 const { REACT_APP_SERVER_URL } = process.env;
 
 const ExerciseDetails = (props) => {
+  console.log('exercise details props', props)
   const [duration, setDuration] = useState(0);
   const [distance, setDistance] = useState(0);
   const [weight, setWeight] = useState(0);
@@ -79,6 +79,7 @@ const ExerciseDetails = (props) => {
         <div className="content">
           <span className="stars"></span>
           <h2 className="java">{props.name}</h2>
+          {/* <img src="https://i.imgur.com/76devJo.jpg" alt="" /> */}
           <p className="java">Duration: {props.durationGoal}</p>
           <p className="java">Weight: {props.weightGoal}</p>
           <p className="java">Reps: {props.repsGoal}</p>
@@ -86,6 +87,7 @@ const ExerciseDetails = (props) => {
           <p className="java">Distance: {props.distanceGoal}</p>
         <button onClick={handleSubmit} >Save Progress</button>
         </div>
+        <div className="trackerContainer" >
         <RepsTracker
           reps={reps}
           increaseReps={increaseReps}
@@ -111,6 +113,7 @@ const ExerciseDetails = (props) => {
           increaseDuration={increaseDuration}
           clearDuration={clearDuration}
         />
+        </div>
       </div>
       <div className="face face2">
         <h2>{props.muscleGroup}</h2>

@@ -54,7 +54,7 @@ const RoutineDropDown = (props) => {
   return (
     <div>
       <form onSubmit={e => handleSubmit(e)}>
-        <label htmlFor="routineGroup">Add to Routine:</label>
+        <label htmlFor="routineGroup"></label>
         <select
           name="routineGroup"
           id="routineGroup"
@@ -63,7 +63,7 @@ const RoutineDropDown = (props) => {
         >
           {allRoutines.length && generateOptions()}
         </select>
-        <input type="submit" value="Add to Routine" />
+        <input type="submit" value="Add to Schedule" />
       </form>
     </div>
   );

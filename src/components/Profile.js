@@ -1,40 +1,70 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import Axios from "axios";
+import setAuthToken from "../utils/setAuthToken";
+import { Link } from "react-router-dom";
+import Chart from "./Chart";
+import PieChart from "./PieChart";
+
+const { REACT_APP_SERVER_URL } = process.env;
 
 const Profile = (props) => {
-   const { handleLogout, user } = props;
-   const { id, name, email, exp } = user;
-   const expirationTime = new Date(exp * 1000);
-   let currentTime = Date.now();
+  const [progress, setProgress] = useState("");
+  const { handleLogout, user } = props;
+  const { id, name, email, exp } = user;
+  const expirationTime = new Date(exp * 1000);
+  let currentTime = Date.now();
 
-   // make a condition that compares exp and current time
-   if (currentTime >= expirationTime) {
-       handleLogout();
-       alert('Session has ended. Please login to continue.');
-   }
+  let token = localStorage.getItem("jwtToken");
+  console.log(token);
 
-   const userData = user ?
-   (<div>
-       <h1>Profile</h1>
-       <p>Name: {name}</p>
-       <p>Email: {email}</p>
-       <p>ID: {id}</p>
-   </div>) : <h2>Loading...</h2>
+  setAuthToken(token);
 
-    const errorDiv = () => {
-        return (
-            <div className="text-center pt-4">
-                <h3>Please <Link to="/login">login</Link> to view this page</h3>
-            </div>
-        );
+  useEffect(() => {
+    const fetchExercises = async () => {
+      const response = await Axios.get(`${REACT_APP_SERVER_URL}/progress`);
+      //    console.log("fetch progress", response.progress);
+      // const { results } = response.data.routines;
+      setProgress(response.data.progress);
     };
-    
-    return (
-        <div className="text-center pt-4">
-            {user ? userData : errorDiv()}
-        </div>
-    );
+    fetchExercises();
+  }, []);
 
-}
+  console.log("progress state", progress);
+
+  // make a condition that compares exp and current time
+  if (currentTime >= expirationTime) {
+    handleLogout();
+    alert("Session has ended. Please login to continue.");
+  }
+
+  const userData = user ? (
+    <div>
+      <h1>Profile</h1>
+      <p>Name: {name}</p>
+      <p>Email: {email}</p>
+      <p>ID: {id}</p>
+    </div>
+  ) : (
+    <h2>Loading...</h2>
+  );
+
+  const errorDiv = () => {
+    return (
+      <div className="text-center pt-4">
+        <h3>
+          Please <Link to="/login">login</Link> to view this page
+        </h3>
+      </div>
+    );
+  };
+
+  return (
+    <div className="text-center pt-4">
+      {user ? userData : errorDiv()}
+      <Chart progress={progress}/>
+      {/* <PieChart progress={progress}/> */}
+    </div>
+  );
+};
 
 export default Profile;

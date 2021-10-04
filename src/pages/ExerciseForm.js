@@ -13,26 +13,25 @@ const ExerciseForm = () => {
   const [equipment, setEquipment] = useState("");
   const [steps, setSteps] = useState("");
   const [durationGoal, setDurationGoal] = useState("");
-  const [weightGoal, setWeightGoal] = useState('');
-  const [repsGoal, setRepsGoal] = useState('');
-  const [setsGoal, setSetsGoal] = useState('');
-  const [distanceGoal, setDistanceGoal] = useState('');
+  const [weightGoal, setWeightGoal] = useState("");
+  const [repsGoal, setRepsGoal] = useState("");
+  const [setsGoal, setSetsGoal] = useState("");
+  const [distanceGoal, setDistanceGoal] = useState("");
   const [redirect, setRedirect] = useState(false);
 
   useEffect(() => {
-    if (type === 'Cardio') {
-      setMuscleGroup('Heart/Respiratory');
+    if (type === "Cardio") {
+      setMuscleGroup("Heart");
     }
-  
-  }, [type])
+  }, [type]);
 
   const handleType = (e) => {
-      setType(e.target.value);
-  }
-  
+    setType(e.target.value);
+  };
+
   const handleMuscleGroup = (e) => {
-      setMuscleGroup(e.target.value);
-  }
+    setMuscleGroup(e.target.value);
+  };
 
   const handleName = (e) => {
     setName(e.target.value);
@@ -69,21 +68,33 @@ const ExerciseForm = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
+    console.log("we hit the handlesubmit for the form");
 
-      const newExercise = { type, muscleGroup, name, img_url, equipment, steps, durationGoal, weightGoal, repsGoal, setsGoal, distanceGoal };
-      axios
-        .post(`${REACT_APP_SERVER_URL}/exercises`, newExercise)
-        .then((response) => {
-          console.log("===> Yay, new exercise");
-          console.log('exercise response', response);
-          setRedirect(true);
-        })
-        .catch((error) => console.log("===> Error in Signup", error));
-    
+    const newExercise = {
+      type,
+      muscleGroup,
+      name,
+      img_url,
+      equipment,
+      steps,
+      durationGoal,
+      weightGoal,
+      repsGoal,
+      setsGoal,
+      distanceGoal,
+    };
+    axios
+      .post(`${REACT_APP_SERVER_URL}/exercises`, newExercise)
+      .then((response) => {
+        console.log("===> Yay, new exercise");
+        console.log("exercise response", response);
+        setRedirect(true);
+      })
+      .catch((error) => console.log("===> Error in Signup", error));
   };
 
-if (redirect) return <Redirect to="/exercises" />; // You can have them redirected to profile (your choice)
+  if (redirect) return <Redirect to="/exercises" />; // You can have them redirected to profile (your choice)
 
   return (
     <div className="row mt-4">
@@ -93,15 +104,20 @@ if (redirect) return <Redirect to="/exercises" />; // You can have them redirect
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="type">Exercise type: </label>
-              <br/>
+              <br />
               <select name="type" id="types" onChange={handleType}>
                 <option value="Resistance">Resistance</option>
                 <option value="Cardio">Cardio</option>
               </select>
-              <br/>
+              <br />
               <label htmlFor="muscleGroup">Target Muscle Group: </label>
-              <br/>
-              <select name="muscleGroup" id="muscleGroup" onChange={handleMuscleGroup} value={muscleGroup}>
+              <br />
+              <select
+                name="muscleGroup"
+                id="muscleGroup"
+                onChange={handleMuscleGroup}
+                value={muscleGroup}
+              >
                 <option value="Chest">Chest</option>
                 <option value="Back">Back</option>
                 <option value="Arms">Arms</option>
@@ -109,10 +125,10 @@ if (redirect) return <Redirect to="/exercises" />; // You can have them redirect
                 <option value="Legs">Legs</option>
                 <option value="Calves">Calves</option>
                 <option value="Core">Core</option>
-                <option value="Heart/Respiratory">Heart/Respiratory</option>
+                <option value="Heart">Heart</option>
               </select>
-              <br/>
-              <label htmlFor="name">Name</label> 
+              <br />
+              <label htmlFor="name">Name</label>
               <input
                 type="text"
                 name="name"
@@ -121,7 +137,7 @@ if (redirect) return <Redirect to="/exercises" />; // You can have them redirect
                 className="form-control"
                 id="name"
               />
-              <label htmlFor="img_url">Image URL</label> 
+              <label htmlFor="img_url">Image URL</label>
               <input
                 type="text"
                 name="img_url"
@@ -130,7 +146,7 @@ if (redirect) return <Redirect to="/exercises" />; // You can have them redirect
                 className="form-control"
                 id="img_url"
               />
-              <label htmlFor="equipment">Equipment Needed</label> 
+              <label htmlFor="equipment">Equipment Needed</label>
               <input
                 type="text"
                 name="equipment"
@@ -139,7 +155,7 @@ if (redirect) return <Redirect to="/exercises" />; // You can have them redirect
                 className="form-control"
                 id="equipment"
               />
-              <label htmlFor="steps">Steps</label> 
+              <label htmlFor="steps">Steps</label>
               <input
                 type="text"
                 name="steps"
@@ -148,70 +164,69 @@ if (redirect) return <Redirect to="/exercises" />; // You can have them redirect
                 className="form-control"
                 id="steps"
               />
-            </div> 
-            {
-              type === 'Resistance' ? 
+            </div>
+            {type === "Resistance" ? (
               <>
-              <div className="form-group">
-              <label htmlFor="weightGoal">Weight Goal</label>
-              <input
-                type="text"
-                name="weightGoal"
-                value={weightGoal}
-                onChange={handleWeightGoal}
-                className="form-control"
-                id="weightGoal"
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="repsGoal">Reps Goal</label>
-              <input
-                type="text"
-                name="repsGoal"
-                value={repsGoal}
-                onChange={handleRepsGoal}
-                className="form-control"
-                id='repsGoal'
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="setsGoal">Sets Goal</label>
-              <input
-                type="text"
-                name="setsGoal"
-                value={setsGoal}
-                onChange={handleSetsGoal}
-                className="form-control"
-                id='setsGoal'
-              />
-            </div>
-              </> 
-              : 
-              <>
-               <div className="form-group">
-              <label htmlFor="durationGoal">Duration Goal</label>
-              <input
-                type="text"
-                name="durationGoal"
-                value={durationGoal}
-                onChange={handleDurationGoal}
-                className="form-control"
-                id="durationGoal"
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="distanceGoal">Distance Goal</label>
-              <input
-                type="text"
-                name="distanceGoal"
-                value={distanceGoal}
-                onChange={handleDistanceGoal}
-                className="form-control"
-                id='distanceGoal'
-              />
-            </div>
+                <div className="form-group">
+                  <label htmlFor="weightGoal">Weight Goal</label>
+                  <input
+                    type="text"
+                    name="weightGoal"
+                    value={weightGoal}
+                    onChange={handleWeightGoal}
+                    className="form-control"
+                    id="weightGoal"
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="repsGoal">Reps Goal</label>
+                  <input
+                    type="text"
+                    name="repsGoal"
+                    value={repsGoal}
+                    onChange={handleRepsGoal}
+                    className="form-control"
+                    id="repsGoal"
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="setsGoal">Sets Goal</label>
+                  <input
+                    type="text"
+                    name="setsGoal"
+                    value={setsGoal}
+                    onChange={handleSetsGoal}
+                    className="form-control"
+                    id="setsGoal"
+                  />
+                </div>
               </>
-            } 
+            ) : (
+              <>
+                <div className="form-group">
+                  <label htmlFor="durationGoal">Duration Goal</label>
+                  <input
+                    type="text"
+                    name="durationGoal"
+                    value={durationGoal}
+                    onChange={handleDurationGoal}
+                    className="form-control"
+                    id="durationGoal"
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="distanceGoal">Distance Goal</label>
+                  <input
+                    type="text"
+                    name="distanceGoal"
+                    value={distanceGoal}
+                    onChange={handleDistanceGoal}
+                    className="form-control"
+                    id="distanceGoal"
+                  />
+                </div>
+              </>
+            )}
             <button type="submit" className="btn btn-primary float-right">
               Submit
             </button>

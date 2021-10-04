@@ -9,12 +9,35 @@ body {
   background-color: #a9c9ff;
   background-image: linear-gradient(180deg, #a9c9ff 0%, #ffbbec 100%);
 }
+p {
+	color: white;
+}
 .footer {
   position: absolute;
   bottom: 0;
   width: 100%;
   height: 60px; /* Set the fixed height of the footer here */
   line-height: 60px; /* Vertically center the text there */
+}
+
+.card {
+    background-color: 	rgb(192,192,192, .5);
+	border: 1px outset black;
+}
+
+.trackerContainer {
+	display: flex;
+	flex-direction: row;
+}
+
+.goalContainer {
+	display: flex;
+	justify-content: space-around;
+}
+
+.exerciseImg {
+	max-width: 100%;
+	max-height: 300px;
 }
 
 .divBody {
@@ -108,24 +131,29 @@ body {
 }
  
 .divBody .container .card:nth-child(4) .face.face2 {
-	 background-image: linear-gradient(40deg, #00fffc 0%, #fc00ff 45%, #fffc00 100%);
-	 border-radius: 15px;
+	background-image: linear-gradient(40deg, #fffc00 0%, #fc00ff 45%, #00fffc 100%);
+	border-radius: 15px;
 }
- 
 .divBody .container .card:nth-child(5) .face.face2 {
-	 background-image: linear-gradient(40deg, #00fffc 0%, #fc00ff 45%, #fffc00 100%);
-	 border-radius: 15px;
+	background-image: linear-gradient(40deg, #fc00ff 0%, #00fffc 45%, #fffc00 100%);
+	border-radius: 15px;
 }
- 
 .divBody .container .card:nth-child(6) .face.face2 {
-	 background-image: linear-gradient(40deg, #00fffc 0%, #fc00ff 45%, #fffc00 100%);
-	 border-radius: 15px;
+	background-image: linear-gradient(40deg, #00fffc 0%, #fc00ff 45%, #fffc00 100%);
+	border-radius: 15px;
 }
 .divBody .container .card:nth-child(7) .face.face2 {
-	 background-image: linear-gradient(40deg, #00fffc 0%, #fc00ff 45%, #fffc00 100%);
-	 border-radius: 15px;
+	background-image: linear-gradient(40deg, #fffc00 0%, #fc00ff 45%, #00fffc 100%);
+	border-radius: 15px;
 }
-
+.divBody .container .card:nth-child(8) .face.face2 {
+	background-image: linear-gradient(40deg, #fc00ff 0%, #00fffc 45%, #fffc00 100%);
+	border-radius: 15px;
+}
+.divBody .container .card:nth-child(9) .face.face2 {
+	background-image: linear-gradient(40deg, #00fffc 0%, #fc00ff 45%, #fffc00 100%);
+	border-radius: 15px;
+}
 
 .details {
 	 margin: 0;
@@ -147,7 +175,7 @@ body {
 .details .container .card {
 	 position: relative;
 	 width: 80%;
-	 height: 600px;
+	 height: 800px;
 	 margin: 0 auto;
 	 background: #000;
 	 border-radius: 15px;

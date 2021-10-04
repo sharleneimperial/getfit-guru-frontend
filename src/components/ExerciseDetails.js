@@ -84,11 +84,19 @@ const ExerciseDetails = (props) => {
           <h2 className="java">{props.muscleGroup}</h2>
           <img className="exerciseImg" src="https://i.imgur.com/76devJo.jpg" alt="" />
           <p className="java">Steps: {props.steps}</p>
+          {props.type === "Resistance" ? ( 
+            <>
           <p className="java">Weight Goal: {props.weightGoal}</p>
           <p className="java">Reps Goal: {props.repsGoal}</p>
           <p className="java">Sets Goal: {props.setsGoal}</p>
+          </>
+          ) : ( 
+            <>
           <p className="java">Distance Goal: {props.distanceGoal}</p>
+          </>
+            )}
         <div className="trackerContainer" >
+        {props.type === "Resistance" ? (<>  
         <RepsTracker
           reps={reps}
           increaseReps={increaseReps}
@@ -104,6 +112,7 @@ const ExerciseDetails = (props) => {
           increaseWeight={increaseWeight}
           clearWeight={clearWeight}
         />
+        </>) : (<>  
         <DistanceTracker
           distance={distance}
           increaseDistance={increaseDistance}
@@ -114,6 +123,7 @@ const ExerciseDetails = (props) => {
           increaseDuration={increaseDuration}
           clearDuration={clearDuration}
         />
+         </>)}
         <button onClick={handleSubmit} >Save Progress</button>
         </div>
         </div>
@@ -126,3 +136,4 @@ const ExerciseDetails = (props) => {
 };
 
 export default ExerciseDetails;
+

@@ -25,7 +25,7 @@ const Welcome = () => {
         </h1>
       </div>
       <div className="subHeadline">
-        <h3>Log workouts - Track progress - Push yourself</h3>
+        <h3>Set Goals - Log workouts - Track progress - Push yourself</h3>
       </div>
       <div className="callToAction">
         <Link

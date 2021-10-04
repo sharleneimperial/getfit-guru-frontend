@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 function RoutineList(props) {
   console.log('routinelist props', props);
   const [exercises, setExercises] = useState(props.exercises);
+  
   const listExercises = () => {
     return exercises.map((e, i) => {
       return (

@@ -4,8 +4,7 @@ const WeightTracker = props => {
 
     return (
         <div className="list">
-            <p>Weight</p>
-            <p>{props.weight}</p>
+            <p>Weight: {props.weight}</p>
             <button onClick={props.increaseWeight}>Increase Weight</button>
             <button onClick={props.clearWeight}>Clear Weight</button>
         </div>

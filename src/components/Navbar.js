@@ -5,7 +5,22 @@ const Navbar = (props) => {
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container">
-                <Link className="navbar-brand" to="/">Getfit-Guru</Link>
+                <Link className="navbar-brand" to="/">
+                    <svg viewBox="0 0 150 13">
+            {/* Symbol*/}
+            <symbol id="s-text">
+              <text textAnchor="middle" x="50%" y="50%" dy=".35em">
+                Get-Fit Guru
+              </text>
+            </symbol>
+            {/* Duplicate symbols*/}
+            <use className="text" xlinkHref="#s-text" />
+            <use className="text" xlinkHref="#s-text" />
+            <use className="text" xlinkHref="#s-text" />
+            <use className="text" xlinkHref="#s-text" />
+            <use className="text" xlinkHref="#s-text" />
+          </svg>
+          </Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="#navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>

@@ -19,10 +19,27 @@ p {
   height: 60px; /* Set the fixed height of the footer here */
   line-height: 60px; /* Vertically center the text there */
 }
+
+.card {
+    background-color: 	rgb(192,192,192, .5);
+	border: 1px outset black;
+}
+
 .trackerContainer {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 }
+
+.goalContainer {
+	display: flex;
+	justify-content: space-around;
+}
+
+.exerciseImg {
+	max-width: 100%;
+	max-height: 300px;
+}
+
 .divBody {
 	 margin: 0;
 	 padding: 0;
@@ -158,7 +175,7 @@ p {
 .details .container .card {
 	 position: relative;
 	 width: 80%;
-	 height: 600px;
+	 height: 800px;
 	 margin: 0 auto;
 	 background: #000;
 	 border-radius: 15px;

@@ -7,6 +7,8 @@ import WeightTracker from "./trackers/WeightTracker";
 import DistanceTracker from "./trackers/DistanceTracker";
 import DurationTracker from "./trackers/DurationTracker";
 
+import '../App.css';
+
 const { REACT_APP_SERVER_URL } = process.env;
 
 const ExerciseDetails = (props) => {
@@ -16,6 +18,7 @@ const ExerciseDetails = (props) => {
   const [weight, setWeight] = useState(0);
   const [reps, setReps] = useState(0);
   const [sets, setSets] = useState(0);
+  const [steps, setSteps] = useState(props.steps);
 
   const increaseSets = () => {
     const newSetsNumber = sets >= 30 ? 10 : sets + 1;
@@ -78,15 +81,13 @@ const ExerciseDetails = (props) => {
       <div className="face face1">
         <div className="content">
           <span className="stars"></span>
-          <h2 className="java">{props.name}</h2>
-          {/* <img src="https://i.imgur.com/76devJo.jpg" alt="" /> */}
-          <p className="java">Duration: {props.durationGoal}</p>
-          <p className="java">Weight: {props.weightGoal}</p>
-          <p className="java">Reps: {props.repsGoal}</p>
-          <p className="java">Sets: {props.setsGoal}</p>
-          <p className="java">Distance: {props.distanceGoal}</p>
-        <button onClick={handleSubmit} >Save Progress</button>
-        </div>
+          <h2 className="java">{props.muscleGroup}</h2>
+          <img className="exerciseImg" src="https://i.imgur.com/76devJo.jpg" alt="" />
+          <p className="java">Steps: {props.steps}</p>
+          <p className="java">Weight Goal: {props.weightGoal}</p>
+          <p className="java">Reps Goal: {props.repsGoal}</p>
+          <p className="java">Sets Goal: {props.setsGoal}</p>
+          <p className="java">Distance Goal: {props.distanceGoal}</p>
         <div className="trackerContainer" >
         <RepsTracker
           reps={reps}
@@ -113,10 +114,12 @@ const ExerciseDetails = (props) => {
           increaseDuration={increaseDuration}
           clearDuration={clearDuration}
         />
+        <button onClick={handleSubmit} >Save Progress</button>
+        </div>
         </div>
       </div>
       <div className="face face2">
-        <h2>{props.muscleGroup}</h2>
+        <h2>{props.name}</h2>
       </div>
     </div>
   );

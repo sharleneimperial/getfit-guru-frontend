@@ -1,209 +1,102 @@
-# MERN Authentication Frontend
+# GetFit-Guru App
 
-| Components | Links to Code | Description |
-| --- | --- | --- |
-| `App`| [`App`](https://github.com/SEI802/mern-auth-frontend#app-component) | The component that manages the entire app |
-| `Signup`| [`Signup`](https://github.com/SEI802/mern-auth-frontend/blob/main/docs/signup.md) | Allow the user to signup |
-| `Login`| [`Login`](https://github.com/SEI802/mern-auth-frontend/blob/main/docs/login.md) | Allows the user to login to the app |
-| `Navbar`| [`Navbar`](https://github.com/SEI802/mern-auth-frontend/blob/main/docs/navbar.md) | Make `App` class component |
-| `Profile`| [`Profile`](#) | A component that displays the user profile information |
-| `setAuthToken`| [`setAuthToken`](https://github.com/SEI802/mern-auth-frontend/blob/main/docs/setAuthToken.md) | A utility function that adds a token to the `Authentication` header to manage current user |
-| `About`| [`About`](https://github.com/SEI802/mern-auth-frontend/blob/main/docs/other-components.md#about) | A component that decribes the app |
-| `Footer`| [`Footer`](https://github.com/SEI802/mern-auth-frontend/blob/main/docs/other-components.md#footer) | A footer that goes on each component |
-| `Welcome`| [`Welcome`](https://github.com/SEI802/mern-auth-frontend/blob/main/docs/other-components.md#welcome) | A welcome page for the user |
+## Description
 
-### `App` Component
 
-### Imports for `App`
+## The Homepage (Not Logged In)
+![](https://i.imgur.com/u4igkhV.png)
 
-```jsx
-// Imports
-import React, { useEffect, useState } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
-import jwt_decode from 'jwt-decode';
-import setAuthToken from './utils/setAuthToken';
+## Concept and User Stories
 
-// CSS
-import './App.css';
+## Features
 
-// Components
-import Signup from './components/Signup';
-import About from './components/About';
-import Footer from './components/Footer';
-import Login from './components/Login';
-import Navbar from './components/Navbar';
-import Profile from './components/Profile';
-import Welcome from './components/Welcome';
-```
+## What It Includes, Technology Used, Languages, Packages and Frameworks
+- Mongoose User schema and model
+- Settings for the database
+- Passport and passport-jwt for authentication
+- JSON Web Token
+- Passwords that are hashed with BCrypt
+- Cors
+- Axios
 
-### `useState` inside `App`
+## Code Snippets
 
-```jsx
-function App() {
-  // Set state values
-  const [currentUser, setCurrentUser] = useState('');
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
-}
-```
+## How To Access This App
 
-### `PrivateRoute`
+## Installation and Setup Instructions
 
-```jsx
-const PrivateRoute = ({ component: Component, ...rest}) => {
-  let token = localStorage.getItem('jwtToken');
-  console.log('===> Hitting a Private Route');
-  return <Route {...rest} render={(props) => {
-    return token ? <Component {...rest} {...props} /> : <Redirect to="/login"/>
-  }} />
-}
-```
+## Models
+### Exercise Model
+| Column Name | Data Type | Notes |
+| --------- | ---------------- | -------------- | 
+| _id | Integer | Serial Primary Key, Auto-generated |
+| type | String | Required: true |
+| muscleGroup | String | Required: true |
+| name | String | Required: true |
+| img_url | String | Must be provided |
+| equipment | String | Must be provided |
+| steps: | Array[] |
 
-### `useEffect` inside `App`
 
-```jsx
-useEffect(() => {
-    let token;
+### Goal Model
+| Column Name | Data Type | Notes |
+| --------- | ---------------- | -------------- | 
+| _id | Integer | Serial Primary Key, Auto-generated |
+| durationGoal | Number | Must be provided |
+| weightGoal | String | Must be provided |
+| repsGoal | Number | Must be provided |
+| setsGoal | Number | Must be provided |
+| distanceGoal | Number | Must be provided |
+| exercise | mongoose.Schema.Types.ObjectId | ref: Exercise |
+| user | mongoose.Schema.Types.ObjectId | ref: User |
 
-    if (!localStorage.getItem('jwtToken')) {
-      setIsAuthenticated(false);
-      console.log('====> Authenticated is now FALSE');
-    } else {
-      token = jwt_decode(localStorage.getItem('jwtToken'));
-      setAuthToken(localStorage.getItem('jwtToken'));
-      setCurrentUser(token);
-    }
-  }, []);
-```
+### Progress Model
+| Column Name | Data Type | Notes |
+| --------- | ---------------- | -------------- | 
+| _id | Integer | Serial Primary Key, Auto-generated |
+| exercise | mongoose.Schema.Types.ObjectId | ref: Exercise |
+| date | date | new Date()|
+| duration | Number | Must be provided |
+| weight | Number | Must be provided |
+| reps | Number | Must be provided |
+| sets | Number | Must be provided |
+| distance | Number | Must be provided |
 
-### `nowCurrentUser`
+### Routine Model
+| Column Name | Data Type | Notes |
+| --------- | ---------------- | -------------- | 
+| _id | Integer | Serial Primary Key, Auto-generated |
+| day | String | Enum: Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday  |
+| targetArea | String | Must be provided |
+| exercises | mongoose.Schema.Types.ObjectId | ref: Exercise |
 
-```jsx
-const nowCurrentUser = (userData) => {
-    console.log('===> nowCurrentUser is here.');
-    setCurrentUser(userData);
-    setIsAuthenticated(true);
-}
-```
+### User Model
+| Column Name | Data Type | Notes |
+| --------- | ---------------- | -------------- | 
+| _id | Integer | Serial Primary Key, Auto-generated |
+| name | String | Must be provided  |
+| email| String | Must be unique / used for login |
+| password | String | Stored as a hash |
+| timesLoggedIn | Number | used to track the amount of times a user logs in |
+| date | date | new Date()|
+| routines | mongoose.Schema.Types.ObjectId | ref: Routine |
+| progress | mongoose.Schema.Types.ObjectId | ref: Progress |
+| goals | mongoose.Schema.Types.ObjectId | ref: Goal |
 
-### `handleLogout`
+## Routes
+| Routes | Routes Method Used | Notes|
+| --------- | ---------------- | -------------- | 
+| exercises.js | GET, POST | CurrentUser exercises, passport authenticate |
+| goals.js | GET, POST | Get goals/list goals, passport authenticate  |
+| progress.js | GET, POST | Get progress/list progress, passport authenticate |
+| routines.js | GET, PUT, DELETE | Get routines/list routines/delete routines, passport authenticate |
+| users.js | GET, POST | Controls sign up/login/profile/auth of user, passport authenticate|
 
-```jsx
-const handleLogout = () => {
-    if (localStorage.getItem('jwtToken')) {
-        // remove token for localStorage
-        localStorage.removeItem('jwtToken');
-        setCurrentUser(null);
-        setIsAuthenticated(false);
-    }
-}
-```
+## Conclusion
 
-### `return` of `App`
 
-```jsx
-return (
-<div className="App">
-    <h1>MERN Authentication</h1>
-    <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />
-    <div className="container mt-5">
-        <Switch>
-            <Route path='/signup' component={Signup} />
-            <Route 
-            path="/login"
-            render={(props) => <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser}/>}
-            />
-            <PrivateRoute path="/profile" component={Profile} user={currentUser} handleLogout={handleLogout} />
-            <Route exact path="/" component={Welcome} />
-            <Route path="/about" component={About} />
-        </Switch>
-    </div>
-    <Footer />
-</div>
-);
-```
 
-### Finished
 
-```jsx
-// Imports
-import React, { useEffect, useState } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
-import jwt_decode from 'jwt-decode';
-import setAuthToken from './utils/setAuthToken';
 
-// CSS
-import './App.css';
 
-// Components
-import Signup from './components/Signup';
-import About from './components/About';
-import Footer from './components/Footer';
-import Login from './components/Login';
-import Navbar from './components/Navbar';
-import Profile from './components/Profile';
-import Welcome from './components/Welcome';
 
-const PrivateRoute = ({ component: Component, ...rest}) => {
-  let token = localStorage.getItem('jwtToken');
-  console.log('===> Hitting a Private Route');
-  return <Route {...rest} render={(props) => {
-    return token ? <Component {...rest} {...props} /> : <Redirect to="/login"/>
-  }} />
-}
-
-function App() {
-  // Set state values
-  const [currentUser, setCurrentUser] = useState('');
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
-
- 
-  useEffect(() => {
-    let token;
-
-    if (!localStorage.getItem('jwtToken')) {
-      setIsAuthenticated(false);
-      console.log('====> Authenticated is now FALSE');
-    } else {
-      token = jwt_decode(localStorage.getItem('jwtToken'));
-      setAuthToken(localStorage.getItem('jwtToken'));
-      setCurrentUser(token);
-    }
-  }, []);
-
-  const nowCurrentUser = (userData) => {
-    console.log('===> nowCurrent is here.');
-    setCurrentUser(userData);
-    setIsAuthenticated(true);
-  }
-
-  const handleLogout = () => {
-    if (localStorage.getItem('jwtToken')) {
-      // remove token for localStorage
-      localStorage.removeItem('jwtToken');
-      setCurrentUser(null);
-      setIsAuthenticated(false);
-    }
-  }
-
-  return (
-    <div className="App">
-      <Navbar handleLogout={handleLogout} isAuth={isAuthenticated} />
-      <div className="container mt-5">
-        <Switch>
-          <Route path='/signup' component={Signup} />
-          <Route 
-            path="/login"
-            render={(props) => <Login {...props} nowCurrentUser={nowCurrentUser} setIsAuthenticated={setIsAuthenticated} user={currentUser}/>}
-          />
-          <PrivateRoute path="/profile" component={Profile} user={currentUser} handleLogout={handleLogout} />
-          <Route exact path="/" component={Welcome} />
-          <Route path="/about" component={About} />
-        </Switch>
-      </div>
-      <Footer />
-    </div>
-  );
-}
-
-export default App;
-```

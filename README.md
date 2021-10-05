@@ -2,6 +2,7 @@
 
 ## Description
 
+
 ## The Homepage (Not Logged In)
 ![](https://i.imgur.com/u4igkhV.png)
 
@@ -92,6 +93,7 @@
 | users.js | GET, POST | Controls sign up/login/profile/auth of user, passport authenticate|
 
 ## Conclusion
+
 
 
 
